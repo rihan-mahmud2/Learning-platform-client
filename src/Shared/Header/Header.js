@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-
+import logo from "../../assets/logo.png";
 import {
   Navbar,
   MobileNav,
@@ -65,18 +65,18 @@ const Header = () => {
   );
   return (
     <Navbar className="mx-auto  w-full py-2 px-4 lg:px-8 lg:py-4">
-      <div className="container mx-auto flex items-center justify-end text-blue-gray-900">
+      <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <Link
           to={"/home"}
           variant="small"
-          className="mr-5 cursor-pointer py-1.5 font-normal"
+          className="cursor-pointer py-1.5 font-normal"
         >
-          <span>imge</span>
+          {/* <img src={logo} alt="logo" /> */}
         </Link>
         <Link
           to={"/home"}
           variant="small"
-          className="mr-5 cursor-pointer py-1.5 font-normal"
+          className="cursor-pointer py-1.5 font-normal"
         >
           <span>Pro Learning Plaforms</span>
         </Link>
