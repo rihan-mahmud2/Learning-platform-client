@@ -9,7 +9,7 @@ import {
   CardBody,
 } from "@material-tailwind/react";
 import { useContext } from "react";
-import { Form } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import { AuthContext } from "../../ProvideContext/ProvideContext";
 
 function Login() {
@@ -66,15 +66,14 @@ function Login() {
             </Button>
             <Typography variant="small" className="mt-6 flex justify-center">
               Don't have an account?
-              <Typography
-                as="a"
-                href="#signup"
+              <Link
+                to="/register"
                 variant="small"
                 color="blue"
                 className="ml-1 font-bold"
               >
                 Sign up
-              </Typography>
+              </Link>
             </Typography>
           </CardFooter>
         </Form>

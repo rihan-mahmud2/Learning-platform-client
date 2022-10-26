@@ -7,9 +7,15 @@ const Courses = () => {
   console.log(courses);
   return (
     <div className="grid grid-cols-2">
-      <div>
+      <div className="flex flex-col mt-10">
         {courses.map((course) => (
-          <Link key={course.id}>{course.subject}</Link>
+          <Link
+            className="mt-5 text-xl underline"
+            to={`/details/${course.id}`}
+            key={course.id}
+          >
+            {course.subject}
+          </Link>
         ))}
       </div>
       <div className="grid grid-cols-2 gap-5 mt-10 container">

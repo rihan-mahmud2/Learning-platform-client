@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import logo from "../../assets/logo.png";
+import { PersonCircle } from "react-bootstrap-icons";
 import {
   Navbar,
   MobileNav,
@@ -9,7 +10,18 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../ProvideContext/ProvideContext";
+import { Result } from "postcss";
 const Header = () => {
+  const { logOut } = useContext(AuthContext);
+  const handleSignOut = () => {
+    logOut()
+      .then((result) => {})
+      .then((error) => {
+        console.log(error);
+      });
+  };
+  const { user } = useContext(AuthContext);
   const [openNav, setOpenNav] = useState(false);
 
   useEffect(() => {
@@ -31,26 +43,46 @@ const Header = () => {
           Home
         </Link>
       </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <Link to={"register"} className="flex items-center">
-          Register
-        </Link>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <Link to={"/login"} className="flex items-center">
-          Login
-        </Link>
-      </Typography>
+      {user ? (
+        <>
+          <Typography
+            as="li"
+            variant="small"
+            color="blue-gray"
+            className="p-1 font-normal"
+          >
+            <Link to={"/login"} className="flex items-center">
+              Login
+            </Link>
+          </Typography>
+          <Typography
+            as="li"
+            variant="small"
+            color="blue-gray"
+            className="p-1 font-normal"
+          >
+            <Link
+              onClick={handleSignOut}
+              to={"/login"}
+              className="flex items-center"
+            >
+              Logout
+            </Link>
+          </Typography>
+        </>
+      ) : (
+        <Typography
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className="p-1 font-normal"
+        >
+          <Link to={"register"} className="flex items-center">
+            Register
+          </Link>
+        </Typography>
+      )}
+
       <Typography
         as="li"
         variant="small"
@@ -81,9 +113,13 @@ const Header = () => {
           <span>Pro Learning Plaforms</span>
         </Link>
         <div className="hidden lg:block">{navList}</div>
-        <Button variant="gradient" size="sm" className="hidden lg:inline-block">
-          <span>Buy Now</span>
-        </Button>
+        <div variant="gradient" size="sm" className="hidden lg:inline-block">
+          {user?.photoURL ? (
+            <img src={user.photoURL} alt="profile"></img>
+          ) : (
+            <PersonCircle className="text-3xl" />
+          )}
+        </div>
         <IconButton
           variant="text"
           className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
