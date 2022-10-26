@@ -14,7 +14,7 @@ import { AuthContext } from "../../ProvideContext/ProvideContext";
 
 function Register() {
   const { error, setError } = useState("");
-  const { createUser } = useContext(AuthContext);
+  const { createUser, changeProfile } = useContext(AuthContext);
   const handleSignWithEmailPassword = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -27,7 +27,16 @@ function Register() {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        changeProfile({
+          displayName: name,
+          photoURL: photoURL,
+        })
+          .then((result) => {
+            console.log(user);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((error) => console.log(error));
   };
@@ -55,7 +64,12 @@ function Register() {
             </div>
           </CardBody>
           <CardFooter className="pt-0">
-            <Button type="submit" variant="gradient" fullWidth>
+            <Button
+              type="submit"
+              onSubmit={handleSignWithEmailPassword}
+              variant="gradient"
+              fullWidth
+            >
               Sign In
             </Button>
             <Typography variant="small" className="mt-6 flex justify-center">
