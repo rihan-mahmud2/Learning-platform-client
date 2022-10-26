@@ -8,6 +8,8 @@ import {
   Button,
   CardBody,
 } from "@material-tailwind/react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useContext } from "react";
 import { Form, Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../ProvideContext/ProvideContext";
@@ -32,7 +34,7 @@ function Login() {
         const user = result.user;
         navigate(from, { replace: true });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => toast(error.message));
   };
 
   return (

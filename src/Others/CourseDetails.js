@@ -22,7 +22,7 @@ const CourseDetails = () => {
         <span>The Number of Lectures {lectures}</span>
       </div>
       <Button className="mt-10">
-        <Link to="/premium">Get Premium Access</Link>
+        <Link to={`/details/${id}`}>Get Premium Access</Link>
       </Button>
       ;
     </div>

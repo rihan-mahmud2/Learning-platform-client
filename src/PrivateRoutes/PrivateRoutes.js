@@ -4,7 +4,10 @@ import { AuthContext } from "../ProvideContext/ProvideContext";
 
 const PrivateRoutes = ({ children }) => {
   const location = useLocation();
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
+  if (loading) {
+    return <h1>Loading..............</h1>;
+  }
   if (!user) {
     return (
       <Navigate to={"/login"} state={{ from: location }} replace></Navigate>

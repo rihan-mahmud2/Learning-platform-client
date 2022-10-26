@@ -8,12 +8,12 @@ import {
   Checkbox,
   Button,
 } from "@material-tailwind/react";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Form, Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../ProvideContext/ProvideContext";
 
 function Register() {
-  const { error, setError } = useState("");
   const { createUser, changeProfile } = useContext(AuthContext);
   const handleSignWithEmailPassword = (event) => {
     event.preventDefault();
@@ -35,10 +35,10 @@ function Register() {
             console.log(user);
           })
           .catch((error) => {
-            console.log(error);
+            toast(error.message);
           });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => toast(error.message));
   };
 
   return (

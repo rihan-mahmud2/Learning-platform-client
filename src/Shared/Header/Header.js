@@ -8,11 +8,14 @@ import {
   Typography,
   Button,
   IconButton,
+  Tooltip,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../ProvideContext/ProvideContext";
-import { Result } from "postcss";
+
 const Header = () => {
+  const { user } = useContext(AuthContext);
+  console.log(user);
   const { logOut } = useContext(AuthContext);
   const handleSignOut = () => {
     logOut()
@@ -21,7 +24,7 @@ const Header = () => {
         console.log(error);
       });
   };
-  const { user } = useContext(AuthContext);
+
   const [openNav, setOpenNav] = useState(false);
 
   useEffect(() => {
@@ -115,7 +118,15 @@ const Header = () => {
         <div className="hidden lg:block">{navList}</div>
         <div variant="gradient" size="sm" className="hidden lg:inline-block">
           {user?.photoURL ? (
-            <img src={user.photoURL} alt="profile"></img>
+            <Tooltip
+              content={user?.displayName ? user.displayName : "No name found"}
+            >
+              <img
+                className="w-[30px]"
+                src={user?.photoURL}
+                alt="profile"
+              ></img>
+            </Tooltip>
           ) : (
             <PersonCircle className="text-3xl" />
           )}

@@ -25,12 +25,14 @@ export const router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
-        path: "/premium",
+        path: "/details/:id",
         element: (
           <PrivateRoutes>
             <PremiumInfo></PremiumInfo>
           </PrivateRoutes>
         ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/details/${params.id}`),
       },
       {
         path: "/courses",
