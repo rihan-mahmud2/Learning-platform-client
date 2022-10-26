@@ -1,9 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import CourseDetails from "../Others/CourseDetails";
+import PremiumInfo from "../Others/PremiumInfo";
 import Courses from "../Pages/Courses/Courses";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +23,14 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/premium",
+        element: (
+          <PrivateRoutes>
+            <PremiumInfo></PremiumInfo>
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/courses",

@@ -1,10 +1,11 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useLocation } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 
 const CourseDetails = () => {
   const details = useLoaderData();
   const { id, img, subject, lecturer, lectures, description } = details;
+  const location = useLocation();
   return (
     <div className="mt-12 p-10">
       <h1 className="text-2xl text-gray-700 font-extrabold">
@@ -20,7 +21,10 @@ const CourseDetails = () => {
         <span className="mr-5">Mentor: {lecturer}</span>
         <span>The Number of Lectures {lectures}</span>
       </div>
-      <Button className="mt-10">Get Premium Access</Button>;
+      <Button className="mt-10">
+        <Link to="/premium">Get Premium Access</Link>
+      </Button>
+      ;
     </div>
   );
 };

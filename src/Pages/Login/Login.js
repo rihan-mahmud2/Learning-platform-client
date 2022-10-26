@@ -9,11 +9,14 @@ import {
   CardBody,
 } from "@material-tailwind/react";
 import { useContext } from "react";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../ProvideContext/ProvideContext";
 
 function Login() {
   const { userLogin } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const handleSignWithEmailPassword = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -27,7 +30,7 @@ function Login() {
     return userLogin(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));
   };
