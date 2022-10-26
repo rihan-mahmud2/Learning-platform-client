@@ -11,7 +11,7 @@ const Courses = () => {
         {courses.map((course) => (
           <Link
             className="mt-5 text-xl underline"
-            to={`/details/${course.id}`}
+            to={`/course/${course.id}`}
             key={course.id}
           >
             {course.subject}

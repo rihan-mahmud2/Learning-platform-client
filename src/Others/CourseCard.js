@@ -5,11 +5,13 @@ import {
   CardBody,
   CardFooter,
   Typography,
+  Button,
 } from "@material-tailwind/react";
+import { Link, useLoaderData } from "react-router-dom";
 
 const CourseCard = ({ course }) => {
-  const { img, subject, lectures, lecturer, avilabe_seats, course_type } =
-    course;
+  const { img, subject, lectures, lecturer, avilabe_seats, id } = course;
+
   return (
     <Card className="mt-10">
       <CardHeader color="blue" className="relative h-56">
@@ -20,9 +22,9 @@ const CourseCard = ({ course }) => {
           {subject}
         </Typography>
         <Typography>
-          The place is close to Barceloneta Beach and bus stop just 2 min by
-          walk and near to "Naviglio" where you can enjoy the main night life in
-          Barcelona.
+          <Button>
+            <Link to={`/course/${id}`}>See Details</Link>{" "}
+          </Button>
         </Typography>
       </CardBody>
       <CardFooter divider className="flex items-center justify-between py-3">

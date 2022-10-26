@@ -5,7 +5,7 @@ import { Button } from "@material-tailwind/react";
 const CourseDetails = () => {
   const details = useLoaderData();
   const { id, img, subject, lecturer, lectures, description } = details;
-  const location = useLocation();
+
   return (
     <div className="mt-12 p-10">
       <h1 className="text-2xl text-gray-700 font-extrabold">
