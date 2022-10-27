@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { NavLink, useLoaderData } from "react-router-dom";
 import CourseCard from "../../Others/CourseCard";
 
 const Courses = () => {
@@ -9,13 +9,13 @@ const Courses = () => {
     <div className="grid grid-cols-2">
       <div className="flex flex-col mt-10">
         {courses.map((course) => (
-          <Link
-            className="mt-5 text-xl underline"
+          <NavLink
+            className="mt-5 text-xl underline course"
             to={`/course/${course.id}`}
             key={course.id}
           >
             {course.subject}
-          </Link>
+          </NavLink>
         ))}
       </div>
       <div className="grid grid-cols-2 gap-5 mt-10 container">

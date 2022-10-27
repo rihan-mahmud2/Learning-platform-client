@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLoaderData, useLocation } from "react-router-dom";
+import { NavLink, useLoaderData, useLocation } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 
 const CourseDetails = () => {
@@ -22,7 +22,7 @@ const CourseDetails = () => {
         <span>The Number of Lectures {lectures}</span>
       </div>
       <Button className="mt-10">
-        <Link to={`/details/${id}`}>Get Premium Access</Link>
+        <NavLink to={`/details/${id}`}>Get Premium Access</NavLink>
       </Button>
       ;
     </div>

@@ -7,7 +7,7 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import { Link, useLoaderData } from "react-router-dom";
+import { NavLink, useLoaderData } from "react-router-dom";
 
 const CourseCard = ({ course }) => {
   const { img, subject, lectures, lecturer, avilabe_seats, id } = course;
@@ -23,7 +23,7 @@ const CourseCard = ({ course }) => {
         </Typography>
         <Typography>
           <Button>
-            <Link to={`/course/${id}`}>See Details</Link>{" "}
+            <NavLink to={`/course/${id}`}>See Details</NavLink>{" "}
           </Button>
         </Typography>
       </CardBody>

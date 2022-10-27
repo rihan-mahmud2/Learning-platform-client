@@ -14,7 +14,10 @@ export const AuthContext = createContext();
 const ProvideContext = ({ children }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
-
+  const [theme, setTheme] = useState("light");
+  const toggle = () => {
+    setTheme((curTheme) => (curTheme === "light" ? "dark" : "light"));
+  };
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -47,6 +50,8 @@ const ProvideContext = ({ children }) => {
   const authInfo = {
     user,
     loading,
+    theme,
+    toggle,
     createUser,
     userLogin,
     changeProfile,

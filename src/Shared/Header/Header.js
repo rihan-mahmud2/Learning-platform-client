@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import logo from "../../assets/logo.png";
 import { PersonCircle } from "react-bootstrap-icons";
+import "./Header.css";
 import {
   Navbar,
   MobileNav,
@@ -10,11 +11,12 @@ import {
   IconButton,
   Tooltip,
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../ProvideContext/ProvideContext";
+import ReactSwitch from "react-switch";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, toggle, theme } = useContext(AuthContext);
   console.log(user);
   const { logOut } = useContext(AuthContext);
   const handleSignOut = () => {
@@ -42,22 +44,12 @@ const Header = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to={"/blog"} className="flex items-center">
+        <NavLink to={"/blog"} className="flex items-center">
           Home
-        </Link>
+        </NavLink>
       </Typography>
       {user ? (
         <>
-          <Typography
-            as="li"
-            variant="small"
-            color="blue-gray"
-            className="p-1 font-normal"
-          >
-            <Link to={"/login"} className="flex items-center">
-              Login
-            </Link>
-          </Typography>
           <Typography
             as="li"
             variant="small"
@@ -80,9 +72,9 @@ const Header = () => {
           color="blue-gray"
           className="p-1 font-normal"
         >
-          <Link to={"register"} className="flex items-center">
+          <NavLink to={"register"} className="flex items-center">
             Register
-          </Link>
+          </NavLink>
         </Typography>
       )}
 
@@ -92,9 +84,9 @@ const Header = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to={"/courses"} className="flex items-center">
+        <NavLink to={"/courses"} className="flex items-center">
           Courses
-        </Link>
+        </NavLink>
       </Typography>
       <Typography
         as="li"
@@ -102,29 +94,47 @@ const Header = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to={"/blog"} className="flex items-center">
+        <NavLink
+          to={"/blog"}
+          className={`flex items-center ${({ isActive }) =>
+            isActive ? "active" : undefined}`}
+        >
           Blog
-        </Link>
+        </NavLink>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-normal"
+      >
+        <ReactSwitch
+          className="flex items-center"
+          onChange={toggle}
+          checked={theme === "dark"}
+        ></ReactSwitch>
       </Typography>
     </ul>
   );
   return (
     <Navbar className="mx-auto  w-full py-2 px-4 lg:px-8 lg:py-4">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
-        <Link
+        <NavLink
           to={"/home"}
           variant="small"
-          className="cursor-pointer py-1.5 font-normal"
+          className={`cursor-pointer py-1.5 font-normal ${({ isActive }) =>
+            isActive ? "stroke-lime-500" : undefined}`}
         >
           {/* <img src={logo} alt="logo" /> */}
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to={"/home"}
           variant="small"
-          className="cursor-pointer py-1.5 font-normal"
+          className={`cursor-pointer py-1.5 font-normal ${({ isActive }) =>
+            isActive ? "stroke-lime-500" : undefined}`}
         >
           <span>Pro Learning Plaforms</span>
-        </Link>
+        </NavLink>
         <div className="hidden lg:block">{navList}</div>
         <div variant="gradient" size="sm" className="hidden lg:inline-block">
           {user?.photoURL ? (

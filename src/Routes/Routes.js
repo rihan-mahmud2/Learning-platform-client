@@ -5,6 +5,7 @@ import PremiumInfo from "../Others/PremiumInfo";
 import Blog from "../Pages/Blog/Blog";
 import Courses from "../Pages/Courses/Courses";
 import Login from "../Pages/Login/Login";
+import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import Register from "../Pages/Register/Register";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog></Blog>,
+      },
+      {
+        path: "*",
+        element: <PageNotFound></PageNotFound>,
       },
       {
         path: "/details/:id",
