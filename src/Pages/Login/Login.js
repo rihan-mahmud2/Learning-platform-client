@@ -61,6 +61,12 @@ function Login() {
             </div>
           </CardBody>
           <CardFooter className="pt-0">
+            <Typography
+              variant="small"
+              className="mt-6 mb-6 flex justify-center"
+            >
+              Forget Password?
+            </Typography>
             <Button
               onSubmit={handleSignWithEmailPassword}
               type="submit"
